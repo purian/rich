@@ -2,11 +2,11 @@
 
 var rich = rich || {};
 rich.AssetPicker = function(){
-	
+
 };
 
 rich.AssetPicker.prototype = {
-	
+
 	showFinder: function(dom_id, options){
 		// open a popup
 		var params = {};
@@ -17,10 +17,17 @@ rich.AssetPicker.prototype = {
 		params.type = options.type || "image";
 		params.viewMode = options.view_mode || "grid";
 		params.scoped = options.scoped || false;
-		if(params.scoped == true) {
-			params.scope_type = options.scope_type
-			params.scope_id = options.scope_id;
-		}
+        if(params.scoped == true) {
+            if ($(".scope-info").val() !== undefined && $(".scope-info").val() != "")
+            {
+                params.scope_type = $(".scope-info").val();
+            }
+            else
+            {
+                params.scope_type = options.scope_type;
+            }
+            params.scope_id = options.scope_id;
+        }
 		params.dom_id = dom_id;
 		var url = addQueryString(options.richBrowserUrl, params );
 		window.open(url, 'filebrowser', "width=860,height=500")
