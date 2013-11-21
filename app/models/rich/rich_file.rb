@@ -64,7 +64,9 @@ module Rich
       filename = CGI::unescape(filename)
       
       extension = extension.downcase
-      filename = filename.downcase.gsub(/[^a-z0-9]+/i, '-')
+
+      # This gsub kill Hebrew characters so I commented it
+      #filename = filename.downcase.gsub(/[^a-z0-9]+/i, '-')
       
       self.rich_file.instance_write(:file_name, "#{filename}.#{extension}")
     end
